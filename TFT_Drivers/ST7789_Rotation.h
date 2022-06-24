@@ -92,8 +92,31 @@ case 4: // Inverter portrait & Mirror Y
 	}
 #endif
 	writedata(TFT_MAD_MX | TFT_MAD_COLOR_ORDER);
+	//writedata(TFT_MAD_COLOR_ORDER); --> 0
+	//writedata(TFT_MAD_MX | TFT_MAD_MV | TFT_MAD_COLOR_ORDER); --> 1
 
 	_width = _init_width;
 	_height = _init_height;
 	break;
+
+case 5: // Landscape & Mirror Y
+#ifdef CGRAM_OFFSET
+	if (_init_width == 135)
+	{
+		colstart = 40;
+		rowstart = 53;
+	}
+	else
+	{
+		colstart = 80;
+		rowstart = 0;
+	}
+#endif
+	writedata(TFT_MAD_MX | TFT_MAD_MV | TFT_MAD_MY | TFT_MAD_COLOR_ORDER);
+
+	_width = _init_width;
+	_height = _init_height;
+	break;
+
+
 }
